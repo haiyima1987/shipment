@@ -1,0 +1,116 @@
+.custom-table-wrapper {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    height: rem(0.1);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--grey-pale-d);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    @include border-radius(0.4rem);
+  }
+}
+
+.custom-table {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+
+  tr th {
+    padding: rem(12) rem(24);
+    vertical-align: middle;
+    color: var(--grey-pale-8);
+    font-size: rem(12);
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: rem(1) solid var(--grey-pale-d);
+  }
+
+  tr td {
+    padding: rem(12) rem(24);
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  tr:not(:last-child) td {
+    border-bottom: rem(1) solid var(--grey-pale-d);
+  }
+
+  .row-custom-table {
+    &:hover {
+      background-color: rgba(196, 196, 196, 0.1);
+    }
+  }
+}
+
+.pagination-wrapper {
+  padding: rem(16) rem(20);
+
+  @media screen and (min-width: $screen-lg) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .page-size-wrapper {
+    flex-grow: 1;
+  }
+
+  .page-size-box {
+    width: rem(60);
+    text-align: center;
+  }
+
+  .validator-custom-select-wrapper, .validator-cs-text-wrapper {
+    height: rem(32);
+    line-height: rem(32);
+  }
+
+  .validator-cs-option-list {
+    max-height: none;
+  }
+
+  .option-validator-cs {
+    padding: 0;
+    height: rem(32);
+    line-height: rem(32);
+  }
+}
+
+.pagination-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .button-page-number {
+    margin: 0 rem(3);
+    padding: rem(6);
+    height: rem(36);
+    min-width: rem(36);
+    font-size: rem(14);
+    @include flex-center();
+    color: var(--grey-medium-8);
+    border: rem(1) solid var(--grey-pale-d);
+    border-radius: rem(18);
+
+    &.active {
+      background: transparent linear-gradient(310deg, var(--main-color) 0%, var(--color-blue-gradient) 100%);
+      box-shadow: 0 rem(7) rem(14) rgba(50, 50, 93, 0.1), 0 rem(3) rem(6) rgba(0, 0, 0, 0.08);
+      color: white;
+      border: none;
+    }
+
+    &.navigation {
+      font-size: rem(10);
+    }
+  }
+
+  .dots {
+    margin: 0 rem(8);
+  }
+}

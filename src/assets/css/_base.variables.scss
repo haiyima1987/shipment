@@ -1,0 +1,43 @@
+:root {
+  --base-unit: 16;
+  /** Colors **/
+  --main-color: #66974F;
+  // Red
+  --red-main: #FF2151;
+  // Gray
+  --grey-pale-8: #8392AB;
+  --grey-pale-a: #ABACAD;
+  --grey-pale-e: #E9ECEF;
+  --grey-pale-d: #DEDEDE;
+  --grey-text: #303437;
+  --grey-opaque-03: rgba(35, 31, 32, 0.5);
+  // Other colors
+  --shadow-main: rgba(230, 85, 64, 0.20);
+  --secondary-color: rgba(230, 85, 64, 0.20);
+  --accent-color: rgba(72, 72, 72, 0.5);
+  --color-blue-gradient: #2DCECC;
+  --color-blue: #1171EF;
+  /** Other variables **/
+}
+
+/* starting point for XS */
+$screen-xs: 320px !default;
+$screen-xs-360: 360px !default;
+/* starting point for SM */
+$screen-sm: 576px !default;
+$screen-sm-minus: 575px !default;
+/* starting point for MD */
+$screen-md: 768px !default;
+$screen-md-minus: 767px !default;
+/* starting point for LG */
+$screen-lg: 992px !default;
+$screen-lg-minus: 991px !default;
+/* starting point for XL */
+$screen-xl: 1200px !default;
+$screen-xl-minus: 1199px !default;
+/* starting point for XXL */
+$screen-xxl: 1600px !default;
+$screen-xxl-minus: 1599px !default;
+/* starting point for TV */
+$screen-tv: 2560px !default;
+$screen-tv-minus: 2599px !default;

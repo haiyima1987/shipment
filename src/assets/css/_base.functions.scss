@@ -1,0 +1,13 @@
+$baseUnit: 16;
+
+@function ternary-condition($condition, $trueValue, $falseValue) {
+  @if not ($condition == null) {
+    @return $trueValue;
+  } @else {
+    @return $falseValue;
+  }
+}
+
+@function rem($pxValue) {
+  @return calc(#{$pxValue}rem / var(--base-unit));
+}

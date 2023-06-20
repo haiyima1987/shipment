@@ -1,0 +1,334 @@
+@import "./base.functions";
+@import "./base.variables";
+
+/* layout */
+@mixin border-box() {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* positioning */
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin position-equal($position, $value, $top: null, $right: null, $bottom: null, $left: null, $elevation: 0) {
+  position: $position;
+  top: ternary-condition($top, $top, $value);
+  right: ternary-condition($right, $right, $value);
+  bottom: ternary-condition($bottom, $bottom, $value);
+  left: ternary-condition($left, $left, $value);
+  @if not ($elevation == 0) {
+    z-index: $elevation;
+  }
+}
+
+@mixin position-elevation($position, $top: null, $right: null, $bottom: null, $left: null, $elevation: 50) {
+  @include position($position, $top, $right, $bottom, $left);
+  z-index: $elevation;
+}
+
+/* border */
+@mixin border-include($width, $style, $color, $top: false, $right: false, $bottom: false, $left: false) {
+  @if $top == true {
+    border-top: $width $style $color;
+  }
+  @if $right == true {
+    border-right: $width $style $color;
+  }
+  @if $bottom == true {
+    border-bottom: $width $style $color;
+  }
+  @if $left == true {
+    border-left: $width $style $color;
+  }
+}
+
+@mixin border-exclude($width, $style, $color, $top: true, $right: true, $bottom: true, $left: true) {
+  border: $width $style $color;
+  @if $top == false {
+    border-top: none;
+  }
+  @if $right == false {
+    border-right: none;
+  }
+  @if $bottom == false {
+    border-bottom: none;
+  }
+  @if $left == false {
+    border-left: none;
+  }
+}
+
+/* placeholder */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &:-moz-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &:-ms-input-placeholder {
+    @content
+  }
+}
+
+/* transforming styles */
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  -o-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin rotate($value) {
+  @include transform(rotate($value));
+}
+
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+@mixin translate3d($x, $y, $z) {
+  @include transform(translate3d($x, $y, $z));
+}
+
+@mixin scale($x, $y) {
+  @include transform(scale($x, $y));
+}
+
+/* box shadow */
+@mixin box-shadow($top, $left, $blur, $color, $spread: 0, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $spread $color;
+    -moz-box-shadow: inset $top $left $blur $spread $color;
+    box-shadow: inset $top $left $blur $spread $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $spread $color;
+    -moz-box-shadow: $top $left $blur $spread $color;
+    box-shadow: $top $left $blur $spread $color;
+  }
+}
+
+@mixin box-shadow-disable() {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* transition */
+@mixin transition($property, $duration, $method: linear) {
+  -webkit-transition: $property $duration $method;
+  -moz-transition: $property $duration $method;
+  -o-transition: $property $duration $method;
+  transition: $property $duration $method;
+}
+
+/* border radius */
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-radius-separate($topLeft, $topRight, $btmRight, $btmLeft) {
+  -webkit-border-radius: $topLeft $topRight $btmRight $btmLeft;
+  -moz-border-radius: $topLeft $topRight $btmRight $btmLeft;
+  border-radius: $topLeft $topRight $btmRight $btmLeft;
+}
+
+@mixin border-radius-disable() {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+/* center elements with absolute and fixed positioning */
+@mixin center-element($horizontal: false, $vertical: false) {
+  @if $horizontal == false and $vertical == false {
+    @include position(absolute, $top: 50%, $left: 50%);
+    @include translate3d(-50%, -50%, 0);
+  } @else if $horizontal == true and $vertical == false {
+    @include position(absolute, $left: 50%);
+    @include translate3d(-50%, 0, 0);
+  } @else if $horizontal == false and $vertical == true {
+    @include position(absolute, $top: 50%);
+    @include translate3d(0, -50%, 0);
+  }
+}
+
+@mixin center-element-fixed($horizontal: false, $vertical: false) {
+  @if $horizontal == false and $vertical == false {
+    @include position(fixed, $top: 50%, $left: 50%);
+    @include translate3d(-50%, -50%, 0);
+  } @else if $horizontal == true and $vertical == false {
+    @include position(fixed, $left: 50%);
+    @include translate3d(-50%, 0, 0);
+  } @else if $horizontal == false and $vertical == true {
+    @include position(fixed, $top: 50%);
+    @include translate3d(0, -50%, 0);
+  }
+}
+
+/* center align vertically with self-defined horizontal value */
+@mixin center-element-horizontal($left: null, $right: null) {
+  @include position(absolute, $top: 50%, $left: $left);
+  @include translate3d(0, -50%, 0);
+  @if not ($left == null) and $right == null {
+    left: $left;
+  } @else if $left == null and not ($right == null) {
+    right: $right;
+  }
+}
+
+/* center align horizontally with self-defined vertical value */
+@mixin center-element-vertical($top: null, $bottom: null) {
+  @include position(absolute, $left: 50%);
+  @include translate3d(-50%, 0, 0);
+  @if not ($top == null) and $bottom == null {
+    top: $top;
+  } @else if $top == null and not ($bottom == null) {
+    bottom: $bottom;
+  }
+}
+
+/* align child elements with flex-box */
+@mixin flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+/* center child elements with flex-box */
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-vertical() {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin grid($column: 4, $gap: 1rem) {
+  display: grid;
+  grid-gap: $gap;
+  grid-template-columns: repeat($column, 1fr);
+}
+
+@mixin col-repeat($value, $limit) {
+  $text: '';
+  @for $i from 1 through $limit {
+    $text: $text + $value + ' ';
+  }
+  grid-template-columns: unquote($text);
+}
+
+@mixin grid-gap($column: 4, $colGap: 1rem, $rowGap: 1rem) {
+  display: grid;
+  grid-column-gap: $colGap;
+  grid-row-gap: $rowGap;
+  @include col-repeat(auto, $column);
+}
+
+/* disable user select */
+@mixin user-select($value) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}
+
+/* set background image */
+@mixin background($path, $repeat: no-repeat, $size: 100% 100%, $position: 0% 0%, $attachment: inherit) {
+  background: {
+    image: url($path);
+    repeat: $repeat;
+    size: $size;
+    position: $position;
+    attachment: $attachment;
+  }
+}
+
+/* create an aspect ratio box */
+@mixin aspect-ratio-box($width: 2, $height: 3) {
+  height: 0;
+  position: relative;
+  padding-top: unquote(($height / $width)*100 + '%');
+
+  & > div {
+    @include position-equal(absolute, 0);
+  }
+}
+
+/* disable default  */
+@mixin input-arrow-disable($allType: false) {
+  @if ($allType == true) {
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  } @else {
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+@mixin user-drag($value) {
+  -webkit-user-drag: $value;
+}
+
+/* truncate text to a number of lines */
+@mixin break-line($line-number) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-number;
+  -webkit-box-orient: vertical;
+  text-overflow: clip;
+}
+
+@mixin line-clamp($line: 3) {
+  overflow: hidden;
+  @include break-line($line)
+}
+
+/* show ellipsis on overflow text */
+@mixin overflow-ellipsis($maxWidth: 15rem) {
+  max-width: $maxWidth;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin dot($width: 1.2rem, $height: 1.2rem, $radius: 50%, $background: white, $color: black) {
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  background-color: $background;
+  color: $color;
+}
+
+/** Hover **/
+@mixin hover-active-pointer {
+  &:hover {
+    cursor: pointer;
+    @content
+  }
+}
+
+@mixin on-hover {
+  &:hover {
+    @content
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "shipment",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --mode=local",
+    "prod": "vue-cli-service serve --mode=production",
+    "build": "npm run build:development",
+    "build:local": "vue-cli-service build --mode local",
+    "build:development": "vue-cli-service build --mode development",
+    "build:staging": "vue-cli-service build --mode staging",
+    "build:production": "vue-cli-service build --mode production",
+    "test:e2e": "vue-cli-service test:e2e",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "axios": "^0.26.1",
+    "core-js": "^3.8.3",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuex": "4.0.2",
+    "yo-validator": "^1.0.26"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@cypress/vue": "^5.0.5",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-e2e-cypress": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "cypress": "^12.14.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "xvfb": "^0.4.0"
+  }
+}

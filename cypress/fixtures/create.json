@@ -1,0 +1,18 @@
+{
+  "nonRequired": [
+    "first-name",
+    "last-name"
+  ],
+  "required": [
+    "street",
+    "postal-code",
+    "city",
+    "country"
+  ],
+  "types": [
+    "sender",
+    "receiver"
+  ],
+  "nonRequiredOption": "Hong Kong",
+  "errorField": "validator-error-field"
+}
