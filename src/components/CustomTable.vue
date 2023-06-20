@@ -1,23 +1,28 @@
 <template>
   <div class="custom-table-wrapper">
-    <table :class="options.tableClass" class="custom-table table table-flush">
-      <thead class="thead-light">
-      <tr class="head-custom-table">
+    <table :class="[options.tableClass, verticalLayout ? 'vertical-layout' : 'regular-layout']"
+           class="custom-table">
+      <thead class="thead">
+      <tr class="tr">
         <th v-for="(value, key, index) in options.headers" :key="index"
-            class="cell-custom-table text-uppercase text-secondary text-xxs font-weight-bolder">
-          <slot v-if="!value" :name="`${key}-header`"/>
-          <span v-else class="opacity-7">{{ value }}</span>
+            class="th">
+          <slot v-if="!value" :name="`th-${key}`"/>
+          <span v-else class="">{{ value }}</span>
         </th>
       </tr>
       </thead>
-      <tbody v-if="data">
-      <tr v-for="rowData in data" :key="rowData.id"
-          class="row-custom-table">
-        <td v-for="(value, key, index) in options.headers" :key="index"
-            class="cell-custom-table text-sm">
-          <slot :name="key" :row-data="rowData"/>
-        </td>
-      </tr>
+      <tbody v-if="data" class="tbody">
+      <template v-for="rowData in data" :key="rowData.id">
+        <tr :class="{'tr-body-vertical': verticalLayout}" class="tr">
+          <td v-for="(value, key, index) in options.headers" :key="index"
+              class="td">
+            <div v-if="verticalLayout" class="col-th">{{ value }}</div>
+            <div :class="{'col-td': verticalLayout}">
+              <slot :name="key" :row-data="rowData"/>
+            </div>
+          </td>
+        </tr>
+      </template>
       </tbody>
     </table>
   </div>
@@ -32,6 +37,9 @@ export default {
     },
     data: {
       required: true
+    },
+    verticalLayout: {
+      default: true
     }
   }
 }

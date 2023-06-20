@@ -14,15 +14,15 @@
         <template #serviceCodeText="props">{{ props.rowData.serviceCodeText }}</template>
         <template #createdAtText="props">{{ props.rowData.createdAtText }}</template>
         <template #statusText="props">
-          <div v-if="props.rowData.status === 1" class="badge bg-gradient-warning">
+          <span v-if="props.rowData.status === 1" class="badge bg-gradient-warning">
             {{ props.rowData.statusText }}
-          </div>
-          <div v-else-if="props.rowData.status === 2" class="badge bg-gradient-info">
+          </span>
+          <span v-else-if="props.rowData.status === 2" class="badge bg-gradient-info">
             {{ props.rowData.statusText }}
-          </div>
-          <div v-else class="badge bg-gradient-success">
+          </span>
+          <span v-else class="badge bg-gradient-success">
             {{ props.rowData.statusText }}
-          </div>
+          </span>
         </template>
       </CustomTable>
       <Pagination
