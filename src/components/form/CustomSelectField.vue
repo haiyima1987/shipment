@@ -227,6 +227,7 @@ export default {
       });
     },
     initializeOptions: function () {
+      // initialize the options for rending the view
       const options = this.$props.options;
       if (options && Array.isArray(options)) {
         this.parsedOptions = options.map(option => {

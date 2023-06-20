@@ -6,6 +6,14 @@
 @import "./partial.form";
 @import "./layout.grid";
 
+html {
+  font-size: 14px;
+
+  @media screen and (min-width: $screen-xs-360) {
+    font-size: 16px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -46,7 +54,7 @@ a, button {
   text-align: center;
   vertical-align: middle;
   color: var(--main-color-button);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 rem(4) rem(6) rgba(50, 50, 93, 0.1), 0 rem(1) rem(3) rgba(0, 0, 0, 0.08);
 
   &:hover {
     cursor: pointer;
@@ -179,7 +187,7 @@ a, button {
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
-    @include border-radius(0.4rem);
+    @include border-radius(rem(4));
   }
 }
 
@@ -207,8 +215,8 @@ html, div {
 /* panels */
 .panel-white {
   background-color: white;
-  @include border-radius(1.5rem);
-  @include box-shadow(0, 0, 2rem, rgba(215, 215, 215, 0.5));
+  @include border-radius(rem(15));
+  @include box-shadow(0, 0, rem(20), rgba(215, 215, 215, 0.5));
 }
 
 /* page layouts */
@@ -231,9 +239,6 @@ html, div {
 }
 
 @media screen and (min-width: $screen-xs-360) {
-  html {
-    font-size: 16px;
-  }
 }
 
 @media screen and (min-width: $screen-sm) {

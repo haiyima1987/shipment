@@ -120,8 +120,6 @@ export default {
   }),
   methods: {
     onValueChanged: function (value) {
-      // here it is easier to keep a local variable to check country before sending the form
-      // yo-validator can do the same but the logic will be more complex, so the simpler way is chosen
       this.sameCountry = value === 1;
     },
     onSenderCountryChange: function (value) {
@@ -149,6 +147,8 @@ export default {
       }
     },
     onFormValid: function (data) {
+      // here it is easier to keep a local variable to check country before sending the form
+      // yo-validator can do the same but the logic will be more complex, so the simpler way is chosen
       if (!this.checkCountryValid()) return;
       this.$store.dispatch('createShipment', data).then(response => {
         if (response) {
